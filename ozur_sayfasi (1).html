@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özür Sayfası</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fdf6e3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 24px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #yesBtn {
+            background-color: #4caf50;
+            color: white;
+        }
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+        }
+        #message {
+            font-size: 18px;
+            margin-top: 20px;
+            display: none;
+        }
+        .gif {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Seni üzdüğüm için özür dilerim. Beni affedebilir misin?</h1>
+        <button id="yesBtn">Evet</button>
+        <button id="noBtn">Hayır</button>
+        <div id="message">
+            <p>Evet diyeceğini biliyordum... çünkü sen her zaman kalbi büyük bir öğretmensin. Teşekkür ederim. İsteyerek olmasa da bugüne kadar sizi kırdığım için üzgünüm.<br><br>Umarım yaptığım bu hatanın nedenini anlarsınız ve her şey eskisi gibi olur.</p>
+            <p><em>“Bu özrün yanına bir gülümseme eklenirse, dünya daha güzel bir yer olur.”</em></p>
+            <img src="https://media4.giphy.com/media/ejm8tkFonl8o8/giphy.gif" class="gif">
+        </div>
+        <img src="https://media2.giphy.com/media/DUuyU3KyYGLNS/giphy.gif" class="gif" id="startGif">
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const message = document.getElementById("message");
+        const startGif = document.getElementById("startGif");
+
+        const noMessages = [
+            "Emin misin?",
+            "Gerçekten emin misin?",
+            "Son kararın mı yoksa pişman olur musun?",
+            "2025 geometri hatrına... Analitikte integral kullanırım!",
+            "Peki, daha sormayacağım..."
+        ];
+
+        let noClickCount = 0;
+        let yesSize = 1;
+
+        noBtn.addEventListener("click", () => {
+            if (noClickCount < noMessages.length) {
+                noBtn.innerText = noMessages[noClickCount];
+                noClickCount++;
+                yesSize += 0.5;
+                yesBtn.style.transform = `scale(${yesSize})`;
+            } else {
+                noBtn.style.display = "none";
+                yesBtn.style.transform = `scale(${yesSize + 2})`;
+            }
+        });
+
+        yesBtn.addEventListener("click", () => {
+            message.style.display = "block";
+            yesBtn.style.display = "none";
+            noBtn.style.display = "none";
+            startGif.style.display = "none";
+        });
+    </script>
+</body>
+</html>
